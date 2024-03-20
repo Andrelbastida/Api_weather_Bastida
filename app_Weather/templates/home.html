@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ClimaTempo</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+  </head>
+  <body>
+    <nav>
+      <div class="fundoLogo">
+        <img src="{% static 'images/Logo.png' %} " class="Logo" />
+      </div>
+
+      <div class="campoPesquisaCidade">
+        <h4 class="">Cidade</h4>
+        <input id="cidade" type="text" onkeydown="handleKeyPress(event)"/>
+      </div>
+      
+      <div class="campoUsuario">
+        <a class="Loginbtn">Login</a>
+        <img
+          src="{% static 'images/capturaImagem.png' %} "
+          class="imagemUser"
+        />
+      </div>
+    </nav>
+
+    <header> 
+      <div class="dataEhora">
+        <h3>Previsão</h3>
+        <output id="cidadeAtual"></output>  
+        <output id="dataAtual"></output>
+      </div>
+    </header>
+
+    {% block navega %}
+    <aside>
+      <a>Agora</a>
+      <a>Hoje</a>
+      <a>Amanhã</a>
+      <a>Fim de Semana</a>
+      <a>Ultimos 15 Dias</a>
+      <a>Ultimos 30 Dias</a>
+  </aside>
+    {% endblock %}
+
+    
+    <div>
+      {% block content %} 
+      
+      {% endblock %}</div>
+
+      <script>
+        // Função para atualizar a data 
+        function atualizaData(){
+            var dataAtual = new Date();
+            var dia = dataAtual.getDate().toString().padStart(2, '0');
+            var mes = (dataAtual.getMonth() + 1).toString().padStart(2, '0');
+            var ano = dataAtual.getFullYear();
+           /* var hora = dataAtual.getHours().toString().padStart(2, '0');
+            var minuto = dataAtual.getMinutes().toString().padStart(2, '0');
+           */
+            var dataFormatada = dia + '/' + mes + '/' + ano/* + ' ' + hora + ':' + minuto*/;
+    
+            document.getElementById('dataAtual').textContent = dataFormatada;
+        }
+        function atualizaCidade(){
+          var cidadeAtual = document.getElementById('cidade').value;
+            if (cidadeAtual.trim() !== ""){
+              document.getElementById('cidadeAtual').textContent = cidadeAtual;
+              document.getElementById('cidade').value ="";
+          }
+        }
+        function handleKeyPress(event){
+          if (event.key === "Enter"){
+            atualizaCidade();
+          }
+        }
+        atualizaData();
+        setInterval(atualizaData, 1000);
+        atualizaCidade();
+        
+    </script>
+  </body>
+</html>
