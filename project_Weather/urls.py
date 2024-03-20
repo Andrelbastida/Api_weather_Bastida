@@ -16,11 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app_Weather.views import WeatherView, WeatherGenerate
+from app_Weather.views import WeatherView, WeatherGenerate,WeatherReset
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', WeatherView.as_view(), name='Weather_View'),
     path('generate', WeatherGenerate.as_view(), name='Weather_Generate'),
+    path('reset', WeatherReset.as_view(), name='Weather_Reset'),
 ]
 
