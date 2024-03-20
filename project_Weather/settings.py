@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'app_Weather.apps.AppWeatherConfig' # Utilizei este para referenciar minha classe "AppWeatherConfig",dentro do arquivo apps.py na pasta da minha aplicação.
 ]
 
 MIDDLEWARE = [
@@ -79,6 +80,9 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+###Estou Comentando as linhas abaixo, para adicionar o  banco de dados posteriormente: 
+#MONGO_CONNECTION_STRING = 'mongodb://10.109.2.63:443/'
+#MONGO_DATABASE_NAME = 'weather_andresouza'
 
 
 # Password validation
